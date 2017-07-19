@@ -14,7 +14,7 @@ class BooksApp extends React.Component {
         books: [],
         currentlyReading: null,
         wantToRead: null,
-        readAlready: null
+        read: null
       }
 
       this.moveBooksToDifferentShelf = this.moveBooksToDifferentShelf.bind(this);
@@ -53,7 +53,7 @@ class BooksApp extends React.Component {
       book.shelf = shelfValue;
       this.setState(state => ({
         books:state.books.filter(b => b.id !== book.id).concat([ book ])
-      //  console.log(book)
+      // s console.log(shelfValue)
       }))
     })
 
@@ -62,13 +62,13 @@ class BooksApp extends React.Component {
   render() {
     let currentlyReading
     let wantToRead
-    let readAlready
+    let read
 
 
     if(this.state.books !== null) {
       currentlyReading = this.state.books.filter((book) => book.shelf === 'currentlyReading')
       wantToRead = this.state.books.filter((book) => book.shelf === 'wantToRead')
-      readAlready = this.state.books.filter((book) => book.shelf === 'read')
+      read = this.state.books.filter((book) => book.shelf === 'read')
     }
 
     return (
@@ -105,7 +105,7 @@ class BooksApp extends React.Component {
               />
               <ListBooks
                 onmoveBooksToDifferentShelf={this.moveBooksToDifferentShelf}
-                books={readAlready}
+                books={read}
                 title='Read'
                 getBookById={this.getBookById}
               />
