@@ -4,7 +4,6 @@ import Book from './Book'
 import * as BooksAPI from './utils/BooksAPI'
 import PropTypes from 'prop-types';
 
-
 class SearchBooks extends Component {
 
   constructor(props) {
@@ -19,19 +18,17 @@ class SearchBooks extends Component {
     onmoveBooksToDifferentShelf: PropTypes.func.isRequired
   }
 
-  updateQuery = (query) => {
+  updateQuery = (query, maxResults) => {
     this.setState({ query: query.trim() })
-
-    if(query !== '') {
-      BooksAPI.search(query).then(books => this.setState({
-        searchedBooks: books
-      }))
-    } else {
-      this.setState({
-        searchedBooks: []
+    if(query.length === 0) {
+               this.setState({query, searchedBooks: []})
+           }
+    if(query.length>0) {
+      BooksAPI.search(query,maxResults).then(books => {
+        books.error ? (this.setState({searchedBooks: []})) : (this.setState({searchedBooks: books instanceof Array ? books : []}))
       })
-    }
   }
+}
 
   clearQuery = () => {
     console.log('clearQuery')
@@ -44,7 +41,6 @@ class SearchBooks extends Component {
     const { query } = this.state
 
     let showingBooks = this.state.searchedBooks;
-  
     return (
 
       <div className="search-books">
@@ -64,17 +60,17 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-
             {
-              showingBooks.map((book) => (
+              showingBooks.map((book, i) => (
+                <li key={i}>
               <Book
                 book={book ? book : null}
                 key={book.id}
                 onmoveBooksToDifferentShelf={onmoveBooksToDifferentShelf}
                 getBookById={getBookById}
                />
+               </li>
             ))}
-
           </ol>
         </div>
       </div>

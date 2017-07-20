@@ -26,7 +26,7 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((allBooks) => {
-      console.log(allBooks)
+      //console.log(allBooks)
       this.setState({
         books: allBooks
       })
@@ -35,26 +35,33 @@ class BooksApp extends React.Component {
 
 
   getBookById(id) {
+    console.log(id);
+//console.log(this.state.books.id);
   let books
 
     if(this.state.books) {
       books = this.state.books.filter((book) => book.id === id)
+       //console.log(books[1]);
       if (books.length > 0) {
         return books[0]
+
       } else {
         return null
       }
     }
+
   }
 
    moveBooksToDifferentShelf(event, book) {
     let shelfValue = event.target.value;
+    console.log(shelfValue);
     BooksAPI.update(book, event.target.value).then(() => {
       book.shelf = shelfValue;
       this.setState(state => ({
         books:state.books.filter(b => b.id !== book.id).concat([ book ])
-      // s console.log(shelfValue)
       }))
+      console.log(book);
+
     })
 
   }
@@ -94,19 +101,19 @@ class BooksApp extends React.Component {
               <ListBooks
                 onmoveBooksToDifferentShelf={this.moveBooksToDifferentShelf}
                 books={currentlyReading}
-                title='Currently Reading'
+                shelf='Currently Reading'
                 getBookById={this.getBookById}
               />
               <ListBooks
                 onmoveBooksToDifferentShelf={this.moveBooksToDifferentShelf}
                 books={wantToRead}
-                title='Want to Read'
+                shelf='Want to Read'
                 getBookById={this.getBookById}
               />
               <ListBooks
                 onmoveBooksToDifferentShelf={this.moveBooksToDifferentShelf}
                 books={read}
-                title='Read'
+                shelf='Read'
                 getBookById={this.getBookById}
               />
             </div>

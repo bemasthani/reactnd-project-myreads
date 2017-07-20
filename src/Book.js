@@ -29,10 +29,7 @@ class Books extends Component {
 
   render() {
     const { book, onmoveBooksToDifferentShelf } = this.props
-
-    //let bookOnShelf =
     return (
-
             <li key={book.id}>
               <div className="book">
                 <div className="book-top">
@@ -48,8 +45,9 @@ class Books extends Component {
                 </select>
                   </div>
                 </div>
-                <div className="book-title">{book.title}</div>
-                 <div className="book-authors">{book.authors.join(", ")}</div>
+                <div  className="book-authors">{book.title !== undefined ? book.title:''}</div>
+                <div  className="book-authors">{book.subtitle !== undefined ? book.subtitle:''}</div>
+                <div  className="book-authors">{book.authors !== undefined ? book.authors.join(", ") : ''}</div>
               </div>
             </li>
 
