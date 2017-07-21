@@ -30,8 +30,8 @@ class Books extends Component {
   render() {
     const { book, onmoveBooksToDifferentShelf } = this.props
     return (
-            <li key={book.id}>
-              <div className="book">
+
+              <div className="book" key={book.id}>
                 <div className="book-top">
                   <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ''})` }}></div>
                   <div className="book-shelf-changer">
@@ -49,7 +49,7 @@ class Books extends Component {
                 <div  className="book-authors">{book.subtitle !== undefined ? book.subtitle:''}</div>
                 <div  className="book-authors">{book.authors !== undefined ? book.authors.join(", ") : ''}</div>
               </div>
-            </li>
+          
 
     )
   }

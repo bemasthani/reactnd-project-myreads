@@ -25,12 +25,14 @@ class ListBooks extends Component {
                   <ol className="books-grid">
                     {
                       books.map((book) => (
+                        <li>
                         <Book
                           book={book ? book : null}
                           key={book.id}
                           onmoveBooksToDifferentShelf={onmoveBooksToDifferentShelf}
                           getBookById={getBookById}
                          />
+                         </li>
                       ))
                     }
                   </ol>

@@ -35,8 +35,8 @@ class BooksApp extends React.Component {
 
 
   getBookById(id) {
-    console.log(id);
-//console.log(this.state.books.id);
+  //  console.log(id);
+
   let books
 
     if(this.state.books) {
