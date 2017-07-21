@@ -20,7 +20,7 @@ class ListBooks extends Component {
     return (
             <div>
               <div className="bookshelf">
-                <h2 className="bookshelf-title">{shelf}</h2>
+                <h1 className="bookshelf-title">{shelf}</h1>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                     {
