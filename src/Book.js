@@ -45,11 +45,11 @@ class Books extends Component {
                 </select>
                   </div>
                 </div>
-                <div  className="book-authors">{book.title !== undefined ? book.title:''}</div>
-                <div  className="book-authors">{book.subtitle !== undefined ? book.subtitle:''}</div>
+                <div  className="book-title">{book.title !== undefined ? book.title:''}</div>
+                <div  className="book-cover-subtitle">{book.subtitle !== undefined ? book.subtitle:''}</div>
                 <div  className="book-authors">{book.authors !== undefined ? book.authors.join(", ") : ''}</div>
               </div>
-          
+
 
     )
   }

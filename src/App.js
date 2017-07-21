@@ -49,7 +49,7 @@ class BooksApp extends React.Component {
         return null
       }
     }
-
+console.log(books);
   }
 
    moveBooksToDifferentShelf(event, book) {
@@ -60,7 +60,7 @@ class BooksApp extends React.Component {
       this.setState(state => ({
         books:state.books.filter(b => b.id !== book.id).concat([ book ])
       }))
-      console.log(book);
+      //console.log(book);
 
     })
 
